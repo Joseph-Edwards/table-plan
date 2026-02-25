@@ -1,6 +1,6 @@
 # table-plan
 
-This repo contains a python script, `make_plan.py` for constructing a community graph from a list of
+This repo contains a python script, `make_plan.py`, for constructing a community graph from a list of
 people, and a list of up to three neighbours.
 
 ## How to use
