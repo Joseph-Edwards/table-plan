@@ -26,12 +26,18 @@ The script in this project requires:
 
 ## Arguments and optional parameters
 
-**positional arguments:**
-filename The path to the csv file containing the table plan data.
+```
+usage: TablePlanner [-h] [--image-output IMAGE_OUTPUT] [--community-output COMMUNITY_OUTPUT] filename
 
-**options:**
--h, --help show this help message and exit
---image-output IMAGE_OUTPUT
-A path to a directory to store the community plots
---community-output COMMUNITY_OUTPUT
-A path to a file to store the communities as text
+A basic script that outputs a nice table plan.
+
+positional arguments:
+  filename              The path to the csv file containing the table plan data.
+
+options:
+  -h, --help            show this help message and exit
+  --image-output IMAGE_OUTPUT
+                        A path to a directory to store the community plots
+  --community-output COMMUNITY_OUTPUT
+                        A path to a file to store the communities as text
+```
