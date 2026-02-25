@@ -155,11 +155,11 @@ col_names = [
     "name",
     "user",
     "name_1",
-    "user_1",
+    "username_1",
     "name_2",
-    "user_2",
+    "username_2",
     "name_3",
-    "user_3",
+    "username_3",
 ]
 df = pd.read_csv(
     file,
@@ -177,7 +177,7 @@ guests = set(df["user"].map(format_email))
 # =============================================================================
 
 # Get the columns of just usernames
-user_cols = ["user", "user_1", "user_2", "user_3"]
+user_cols = ["user", "username_1", "username_2", "username_3"]
 df[user_cols] = df[user_cols].map(format_email)
 
 # View duplicates.
@@ -197,20 +197,21 @@ user_cols.remove("user")
 # For each column of potential guests, check that "the person I would like to
 # sit next to" is actually going to the meal
 for col in user_cols:
-    try:
-        assert all(
-            potential_guest in guests
-            for potential_guest in df[col]
-            if not pd.isnull(potential_guest)
-        )
-    except AssertionError:
-        print(f"The following people appear in column {col} but don't have a ticket")
-        print(
-            set(
-                guest
-                for guest in df[col]
-                if guest not in guests and not pd.isnull(guest)
-            ),
+    if not all(
+        potential_guest in guests
+        for potential_guest in df[col]
+        if not pd.isnull(potential_guest)
+    ):
+        raise ValueError(
+            f"The following people appear in column {col} but don't appear to have a ticket:\n"
+            + str(
+                set(
+                    guest
+                    for guest in df[col]
+                    if guest not in guests and not pd.isnull(guest)
+                )
+            )
+            + "\nPlease check the csv file, and run the script again",
         )
 
 
@@ -219,7 +220,9 @@ for col in user_cols:
 # =============================================================================
 
 # Create a column to represent all neighbours
-df["nbs"] = df.filter(["user_1", "user_2", "user_3"]).apply(make_nbs, axis=1)
+df["nbs"] = df.filter(["username_1", "username_2", "username_3"]).apply(
+    make_nbs, axis=1
+)
 
 # Make this column a dictionary
 d = dict(df["nbs"])
