@@ -13,7 +13,9 @@ uv run --script make_plan.py path/to/input.csv
 
 This will run the script in an environment with the correct dependencies. It is also possible to run
 the script without `uv`, (e.g. with `python make_plan.py`) but that requires creating an environment
-with the required dependencies (see below).
+with the required dependencies (see below). This can be done in a variety of ways, but two of the
+most common use [pip](https://pip.pypa.io/en/stable/) or
+[conda](https://docs.conda.io/projects/conda/en/latest/index.html).
 
 ## Dependencies
 
