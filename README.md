@@ -12,8 +12,8 @@ uv run --script make_plan.py path/to/input.csv
 ```
 
 This will run the script in an environment with the correct dependencies. It is also possible to run
-the script without `uv`, but that requires creating an environment with the required dependencies
-(see below).
+the script without `uv`, (e.g. with `python make_plan.py`) but that requires creating an environment
+with the required dependencies (see below).
 
 ## Dependencies
 
@@ -32,12 +32,21 @@ usage: TablePlanner [-h] [--image-output IMAGE_OUTPUT] [--community-output COMMU
 A basic script that outputs a nice table plan.
 
 positional arguments:
-  filename              The path to the csv file containing the table plan data.
+  filename              The path to the csv file containing the table plan data. This csv file
+                        must have eight columns in the order: name, email, preference one name,
+                        preference one email, preference two name, preference two email,
+                        preference three name, preference three email.
 
 options:
   -h, --help            show this help message and exit
   --image-output IMAGE_OUTPUT
-                        A path to a directory to store the community plots
+                        A path to a directory to store the community plots.
   --community-output COMMUNITY_OUTPUT
-                        A path to a file to store the communities as text
+                        A path to a file to store the communities as text.
 ```
+
+## Output
+
+Depending on the parameters specified, the script will either display or write a community
+graph partitioned by the preferences specified in the input csv file. Additionally, it will either
+print or write the list of calculated partitions.

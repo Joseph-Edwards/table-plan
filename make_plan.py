@@ -29,21 +29,25 @@ parser = argparse.ArgumentParser(
 parser.add_argument(
     "filename",
     type=str,
-    help="The path to the csv file containing the table plan data.",
+    help="""The path to the csv file containing the table plan data.
+This csv file must have eight columns in the order:
+name, email, preference one name, preference one email, preference two name, preference two email,
+preference three name, preference three email.
+""",
 )
 
 parser.add_argument(
     "--image-output",
     type=str,
     required=False,
-    help="A path to a directory to store the community plots",
+    help="A path to a directory to store the community plots.",
 )
 
 parser.add_argument(
     "--community-output",
     type=str,
     required=False,
-    help="A path to a file to store the communities as text",
+    help="A path to a file to store the communities as text.",
 )
 args = parser.parse_args()
 
